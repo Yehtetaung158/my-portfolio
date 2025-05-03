@@ -50,11 +50,11 @@ export default function RootLayout({
       style={{ filter: "invert(0)" }}
     >
       <body>
-        <main className="relative flex min-h-screen flex-col items-center justify-between bg-gray-700 overflow-hidden">
-          <MouseBlobs />
+        <main className="relative flex min-h-screen flex-col items-center justify-between bg-white overflow-hidden">
           <div className="relative z-30 w-full max-w-[1280px]">
             <NavBar />
-            {/* {children} */}
+            <MouseBlobs />
+            {children}
           </div>
 
           <Toaster position="top-center" richColors closeButton />

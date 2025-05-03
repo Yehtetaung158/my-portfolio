@@ -1,123 +1,146 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 type Pos = { x: number; y: number };
 
-const cornerPositions: Pos[] = [
+const getCornerPositions = (): Pos[] => [
   { x: 90, y: 90 }, // top-left
   { x: window.innerWidth - 80, y: 100 }, // top-right
   { x: 60, y: window.innerHeight - 70 }, // bottom-left
   { x: window.innerWidth - 100, y: window.innerHeight - 100 }, // bottom-right
-  ];
+];
+
+const colors = [
+  "bg-gradient-to-r from-purple-500 to-pink-500",
+  "bg-gradient-to-r from-pink-500 to-blue-500",
+  "bg-gradient-to-r from-blue-500 to-cyan-500",
+  "bg-gradient-to-r from-cyan-500 to-purple-500",
+];
+
+const sizes = [160, 180, 140, 200];
+const blurs = [80, 100, 90, 120];
 
 export default function MouseBlobs() {
-  const [positions, setPositions] = useState<Pos[]>(cornerPositions);
+  const [positions, setPositions] = useState<Pos[]>(getCornerPositions());
+  const [targets, setTargets] = useState<Pos[]>(getCornerPositions());
   const [hovering, setHovering] = useState(false);
   const [hoverPos, setHoverPos] = useState<Pos>({ x: 0, y: 0 });
-  const [isCenterHovered, setIsCenterHovered] = useState(false); // Track if the center blob is hovered
+  const [isCenterHovered, setIsCenterHovered] = useState(false);
 
-  console.log("is center ",isCenterHovered)
-
+  // Handle window resize
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!hovering && !isCenterHovered) {
-        setPositions((prev) =>
-          prev.map((pos) => ({
-            x: pos.x + Math.random() * 20 - 10,
-            y: pos.y + Math.random() * 20 - 10,
-          }))
-        );
-      }
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [hovering, isCenterHovered]);
+    const handleResize = () => {
+      const newCorners = getCornerPositions();
+      setPositions(newCorners);
+      setTargets(newCorners);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (hovering) {
-      setHoverPos({ x: e.clientX, y: e.clientY });
+  // Update targets based on state
+  useEffect(() => {
+    if (isCenterHovered) {
+      const center = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      setTargets(Array(4).fill(center));
+    } else if (hovering) {
+      const newTargets = positions.map((_, i) => ({
+        x: hoverPos.x + (i % 2 === 0 ? -1 : 1) * 60,
+        y: hoverPos.y + (i < 2 ? -1 : 1) * 60,
+      }));
+      setTargets(newTargets);
+    } else {
+      setTargets(getCornerPositions());
     }
-  };
+  }, [isCenterHovered, hovering, hoverPos, positions]);
+
+  // Smooth animation loop
+  useEffect(() => {
+    let animationFrameId: number;
+    const animate = () => {
+      setPositions((prev) =>
+        prev.map((pos, i) => {
+          const dx = targets[i].x - pos.x;
+          const dy = targets[i].y - pos.y;
+          return {
+            x: pos.x + dx * 0.15,
+            y: pos.y + dy * 0.15,
+          };
+        })
+      );
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    animationFrameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [targets]);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    setHoverPos({ x: e.clientX, y: e.clientY });
+  }, []);
 
   return (
     <div
-      className="fixed inset-0 z-10"
+      className="fixed inset-0 z-10 overflow-hidden"
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       onMouseMove={handleMouseMove}
     >
-      {/* Blobs at corners */}
-      {positions.map((pos, i) => {
-        const x = hovering
-          ? hoverPos.x + i * 30 - 45
-          : pos.x; // scatter blobs when not hovering
-        const y = hovering
-          ? hoverPos.y + i * 30 - 45
-          : pos.y; // scatter blobs when not hovering
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.4; }
+        }
+      `}</style>
 
-        return (
-          <div
-            key={i}
-            className={`absolute w-64 h-64 rounded-full opacity-25 blur-3xl transition-all duration-1000 ${
-              ["bg-purple-500", "bg-pink-500", "bg-blue-500", "bg-yellow-500"][i % 4]
-            }`}
-            style={{
-              left: x,
-              top: y,
-              transform: "translate(-50%, -50%)",
-            }}
-          />
-        );
-      })}
-
-      {/* Center Blob */}
-      <div
-        className={`absolute w-64 h-64 rounded-full opacity-25 blur-3xl transition-all duration-1000 bg-gray-500`}
-        style={{
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-          pointerEvents: "auto", // Make center blob interactable
-        }}
-        onMouseEnter={() => setIsCenterHovered(true)} // When hover over center blob, set to true
-        onMouseLeave={() => setIsCenterHovered(false)} // When hover off center blob, set to false
-      />
-
-      {/* Center: Collect blobs on hover */}
-      {isCenterHovered && (
+      {/* Corner Blobs */}
+      {positions.map((pos, i) => (
         <div
-          className="absolute z-50 w-64 h-64 rounded-full bg-gray-500 opacity-50 blur-3xl"
+          key={i}
+          className={`absolute rounded-full transition-all duration-1000 ease-out ${colors[i % 4]}`}
           style={{
-            left: "50%",
-            top: "50%",
+            left: pos.x,
+            top: pos.y,
+            width: sizes[i],
+            height: sizes[i],
             transform: "translate(-50%, -50%)",
-            transition: "transform 0.3s ease-in-out",
+            filter: `blur(${blurs[i]}px)`,
+            opacity: 0.3,
+            animation: "pulse 6s ease-in-out infinite",
           }}
         />
-      )}
+      ))}
 
-      {/* Move blobs to center on center hover */}
+      {/* Interactive Center Blob */}
+      <div
+        className={`absolute left-1/2 top-1/2 h-64 w-64 rounded-full transition-all duration-300 ${
+          isCenterHovered
+            ? ""
+            : " bg-gray-400 opacity-25 blur-3xl"
+        }`}
+        style={{
+          transform: "translate(-50%, -50%)",
+          pointerEvents: "auto",
+        }}
+        onMouseEnter={() => setIsCenterHovered(true)}
+        onMouseLeave={() => setIsCenterHovered(false)}
+      />
+
+      {/* Floating Particles */}
       {isCenterHovered && (
-        <>
-          {positions.map((pos, i) => {
-            if (i === 4) return null; // Don't move the center blob itself
-            const x = window.innerWidth / 2; // Move to center horizontally
-            const y = window.innerHeight / 2; // Move to center vertically
-            return (
-              <div
-                key={i}
-                className={`absolute w-64 h-64 rounded-full opacity-25 blur-3xl transition-all duration-1000 ${
-                  ["bg-purple-500", "bg-pink-500", "bg-blue-500", "bg-yellow-500"][i % 4]
-                }`}
-                style={{
-                  left: x,
-                  top: y,
-                  transform: "translate(-50%, -50%)",
-                }}
-              />
-            );
-          })}
-        </>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+            //   className="absolute h-2 w-2 animate-float rounded-full bg-white opacity-50"
+              style={{
+                left: Math.cos((i * Math.PI) / 4) * 40,
+                top: Math.sin((i * Math.PI) / 4) * 40,
+                animationDelay: `${i * 0.2}s`,
+              }}
+            />
+          ))}
+        </div>
       )}
     </div>
   );
