@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import NavBar from "@/components/nav/navBar";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
-// import { Inter } from "";
+import MouseBlobs from "@/components/MouseBlobs";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -50,11 +50,13 @@ export default function RootLayout({
       style={{ filter: "invert(0)" }}
     >
       <body>
-        <main className="flex min-h-screen flex-col items-center justify-between ">
-          <div className=" w-full max-w-[1280px]">
+        <main className="relative flex min-h-screen flex-col items-center justify-between bg-gray-700 overflow-hidden">
+          <MouseBlobs />
+          <div className="relative z-30 w-full max-w-[1280px]">
             <NavBar />
-            {children}
+            {/* {children} */}
           </div>
+
           <Toaster position="top-center" richColors closeButton />
         </main>
       </body>
