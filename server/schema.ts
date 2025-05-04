@@ -14,6 +14,7 @@ import type { AdapterAccount } from "next-auth/adapters";
 // import { createId } from "@paralleldrive/cuid2";
 import { desc, or, relations } from "drizzle-orm";
 import { title } from "process";
+import { url } from "inspector";
 
 export const RoleEnum = pgEnum("role", ["user", "admin"]);
 
@@ -30,4 +31,11 @@ export const users = pgTable("user", {
   isTwoFactorEnabled: boolean("isTwoFactorEnabled").default(false),
   role: RoleEnum("role").default("user"),
   customerId: text("customerId"),
+});
+
+export const about = pgTable("about", {
+  id: serial("id").primaryKey(), // auto-increment ID
+  aboutMe: text("aboutMe").notNull(),
+  resume: text("resume").notNull(), // URL string
+  image: text("image").notNull(), // URL string
 });

@@ -10,7 +10,6 @@ const NavBar = () => {
         <Logo />
       </div>
       <div className=" flex gap-4">
-        <div className=" font-cal-sans-regular">Theme</div>
         <div>
           <AppleStyleDrawer/>
         </div>
