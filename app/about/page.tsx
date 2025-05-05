@@ -1,10 +1,26 @@
+import DownloadResume from "@/components/about/DownloadResume";
+import { Button } from "@/components/ui/button";
+import { auth } from "@/server/auth";
+import { Pencil } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
-const AboutPage = () => {
+const AboutPage = async () => {
+  const session = await auth();
+  const role = session?.user.role;
   return (
     <div>
       <div>
-        <h1>About</h1>
+        <div className=" flex gap-2 items-center">
+          <h1>About</h1>
+          {role === "admin" && (
+            <>
+              <Link href={"/dashboard/about-edit"}>
+                <Pencil className=" size-4 text-purple-600" />
+              </Link>
+            </>
+          )}
+        </div>
         <hr />
         <p>
           Hey, my name is Charles Bruyerre and I use Sharlee as my nickname
@@ -15,7 +31,8 @@ const AboutPage = () => {
           creative coding.
         </p>
       </div>
-    <img src="" alt="" />
+      <DownloadResume />
+      {/* <img src="" alt="" /> */}
     </div>
   );
 };

@@ -35,6 +35,5 @@ export const users = pgTable("user", {
 export const about = pgTable("about", {
   id: serial("id").primaryKey(), // auto-increment ID
   aboutMe: text("aboutMe").notNull(),
-  resume: text("resume").notNull(), // URL string
   image: text("image").notNull(), // URL string
 });
