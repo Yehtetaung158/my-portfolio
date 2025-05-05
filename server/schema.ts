@@ -9,12 +9,14 @@ import {
   pgEnum,
   serial,
   real,
+  varchar,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "next-auth/adapters";
 // import { createId } from "@paralleldrive/cuid2";
 import { desc, or, relations } from "drizzle-orm";
 import { title } from "process";
 import { url } from "inspector";
+import { Phone } from "lucide-react";
 
 export const RoleEnum = pgEnum("role", ["user", "admin"]);
 
@@ -33,7 +35,14 @@ export const users = pgTable("user", {
 });
 
 export const about = pgTable("about", {
-  id: serial("id").primaryKey(), // auto-increment ID
+  id: serial("id").primaryKey(), 
   aboutMe: text("aboutMe").notNull(),
-  image: text("image").notNull(), // URL string
+  image: text("image").notNull(), 
+});
+
+export const contact = pgTable("contact", {
+  id: serial("id").primaryKey(),             
+  email: varchar("email", { length: 255 }),  
+  phone: varchar("phone", { length: 20 }),   
+  linkIn: varchar("linkIn", { length: 255 }) 
 });
