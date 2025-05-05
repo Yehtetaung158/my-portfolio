@@ -51,7 +51,7 @@ export default function RootLayout({
           <main className="relative flex min-h-screen flex-col items-center justify-between bg-[#F9F9F9]/80 dark:bg-[#1D1D1F]/80 backdrop-blur-lg text-[#1D1D1F] dark:text-[#F9F9F9] overflow-hidden">
             <div className="relative z-30 w-full max-w-[1280px]">
               <NavBar />
-              <MouseBlobs />
+              {/* <MouseBlobs /> */}
               {children}
             </div>
             <Toaster position="top-center" richColors closeButton />

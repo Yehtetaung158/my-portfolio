@@ -5,11 +5,15 @@ type Store = {
   setIsDark: () => void;
   open: boolean;
   setOpen: () => void;
+  isAdminView: boolean;
+  setIsAdminView: () => void;
 };
 
 export const useStore = create<Store>((set, get) => ({
   isDark: false,
   open: false,
+  isAdminView: true,
   setIsDark: () => set({ isDark: !get().isDark }),
   setOpen: () => set({ open: !get().open }),
+  setIsAdminView: () => set({ isAdminView: !get().isAdminView }),
 }));
