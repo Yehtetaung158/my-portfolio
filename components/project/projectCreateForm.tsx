@@ -108,6 +108,20 @@ export default function ProjectUploadForm({
         />
 
         <FormField
+          name="project_url"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Project URL</FormLabel>
+              <FormControl>
+                <Input placeholder="https://yourproject" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
           name="imageUrl"
           control={form.control}
           render={({ field }) => (

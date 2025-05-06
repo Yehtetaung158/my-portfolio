@@ -48,18 +48,21 @@ export async function updateProject({
   imageUrl,
   description,
   sourceCode,
+  project_url
 }: {
   id: number;
   name: string;
   imageUrl: string;
   description: string;
   sourceCode: string;
+  project_url:string;
 }) {
   const parse = projectSchema.safeParse({
     name,
     imageUrl,
     description,
     sourceCode,
+    project_url
   });
 
   if (!parse.success) {

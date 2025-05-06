@@ -1,0 +1,1 @@
+ALTER TABLE "projects" ADD COLUMN "project_url" varchar(1024) NOT NULL;

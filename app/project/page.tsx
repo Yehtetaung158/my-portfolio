@@ -1,9 +1,12 @@
-import React from 'react'
+import ProjectCards from "@/components/project/projectCards";
+import React from "react";
 
 const ProjectPage = () => {
   return (
-    <div>ProjectPage</div>
-  )
-}
+    <div>
+      <ProjectCards />
+    </div>
+  );
+};
 
-export default ProjectPage
+export default ProjectPage;

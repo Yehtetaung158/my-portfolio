@@ -45,6 +45,7 @@ export default function ProjectEditForm({
 
   const onSubmit = (values: z.infer<typeof projectSchema>) => {
     execute({ id: initialData.id, ...values });
+    console.log(values);
   };
 
   return (
@@ -91,7 +92,24 @@ export default function ProjectEditForm({
             <FormItem>
               <FormLabel>Source Code URL</FormLabel>
               <FormControl>
-                <Input placeholder="https://github.com/yourproject" {...field} />
+                <Input
+                  placeholder="https://github.com/yourproject"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="project_url"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Project URL</FormLabel>
+              <FormControl>
+                <Input placeholder="https://yourproject" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

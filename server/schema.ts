@@ -53,4 +53,5 @@ export const projects = pgTable("projects", {
   imageUrl: varchar("image_url", { length: 1024 }).notNull(),
   description: text("description").notNull(),
   sourceCode: varchar("source_code", { length: 1024 }).notNull(),
+  project_url: varchar("project_url", { length: 1024 }).notNull(),
 });

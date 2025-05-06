@@ -43,6 +43,13 @@
       "when": 1746520540815,
       "tag": "0005_material_power_man",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1746529116538,
+      "tag": "0006_greedy_wolfsbane",
+      "breakpoints": true
     }
   ]
 }
