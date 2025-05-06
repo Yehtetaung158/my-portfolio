@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Copy } from "lucide-react";
+import { ArrowUpRight, Copy } from "lucide-react";
 import { toast } from "sonner";
 
 type PhoneDisplayProps = {
@@ -18,7 +18,10 @@ export const PhoneDisplay = ({ phone }: PhoneDisplayProps) => {
       <h1>Phone</h1>
       <h1>:</h1>
       <a href={`tel:${phone}`} className="text-blue-500 underline">
-        <h1>{phone}</h1>
+        <h1 className=" flex gap-2 items-center">
+          <ArrowUpRight className="w-4 h-4" />
+          <span>{phone}</span>
+        </h1>
       </a>
       <button onClick={() => copyToClipboard(phone)}>
         <Copy className="w-4 h-4 text-gray-500 hover:text-black" />

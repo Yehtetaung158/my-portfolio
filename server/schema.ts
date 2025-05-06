@@ -35,14 +35,22 @@ export const users = pgTable("user", {
 });
 
 export const about = pgTable("about", {
-  id: serial("id").primaryKey(), 
+  id: serial("id").primaryKey(),
   aboutMe: text("aboutMe").notNull(),
-  image: text("image").notNull(), 
+  image: text("image").notNull(),
 });
 
 export const contact = pgTable("contact", {
-  id: serial("id").primaryKey(),             
-  email: varchar("email", { length: 255 }),  
-  phone: varchar("phone", { length: 20 }),   
-  linkIn: varchar("linkIn", { length: 255 }) 
+  id: serial("id").primaryKey(),
+  email: varchar("email", { length: 255 }),
+  phone: varchar("phone", { length: 20 }),
+  linkIn: varchar("linkIn", { length: 255 }),
+});
+
+export const projects = pgTable("projects", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  imageUrl: varchar("image_url", { length: 1024 }).notNull(),
+  description: text("description").notNull(),
+  sourceCode: varchar("source_code", { length: 1024 }).notNull(),
 });

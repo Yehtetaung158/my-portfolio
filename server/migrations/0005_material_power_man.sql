@@ -1,0 +1,1 @@
+ALTER TABLE "projects" ADD COLUMN "source_code" varchar(1024) NOT NULL;
