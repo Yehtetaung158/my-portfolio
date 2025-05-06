@@ -1,9 +1,52 @@
-import React from 'react'
+import React from "react";
 
-const ProjectCards = () => {
+type Project = {
+  id: number;
+  name: string;
+  imageUrl: string;
+  description: string;
+  sourceCode: string;
+  project_url: string;
+};
+
+type Props = {
+  projectData: Project[];
+};
+
+const ProjectCards = ({ projectData }: Props) => {
   return (
-    <div>ProjectCards</div>
-  )
-}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projectData.map((project) => (
+        <div key={project.id} className="border p-4 rounded shadow">
+          <img
+            src={project.imageUrl}
+            alt={project.name}
+            className="w-full h-48 object-cover rounded"
+          />
+          <h2 className="mt-4 text-xl font-semibold">{project.name}</h2>
+          <p className="text-gray-600">{project.description}</p>
+          <div className="mt-2 space-x-2">
+            <a
+              href={project.sourceCode}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 underline"
+            >
+              Source Code
+            </a>
+            <a
+              href={project.project_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-500 underline"
+            >
+              Live Demo
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
-export default ProjectCards
+export default ProjectCards;
