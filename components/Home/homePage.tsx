@@ -1,10 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
+import StarSun from "../StarSun";
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen text-center space-y-2">
+    <div className="flex flex-col items-center justify-center h-full text-center space-y-2">
       <h1 className=" font-stretch-condensed text-4xl">
         <span className="font-alumni-sans-inline-one text-2l">HEY, I AM</span>{" "}
         YE HTET AUNG

@@ -19,7 +19,7 @@ export default function AppleTopNavWithButton({ role }: Props) {
 
   return (
     <>
-      <div className="fixed top-0 left-0 w-full h-16 bg-[#F9F9F9] dark:bg-[#1D1D1F] text-[#1D1D1F] dark:text-[#F9F9F9] flex items-center justify-between px-6 z-50 shadow-md">
+      <div className="fixed top-0 left-0 w-full h-16  text-[#1D1D1F] dark:text-[#F9F9F9] flex items-center justify-between px-6 z-50 shadow-md">
         <span className="text-xl font-semibold"></span>
 
         <div className="flex gap-4 justify-center items-center">

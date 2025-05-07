@@ -1,13 +1,15 @@
+// app/layout.tsx  (or wherever your RootLayout lives)
 import { ThemeProvider } from "next-themes";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import localFont from "next/font/local";
-import NavBar from "@/components/nav/navBar";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
-import MouseBlobs from "@/components/MouseBlobs";
+import StarSun from "@/components/StarSun";
+import DaySky from "@/components/DaySky";
+import { ClientContent } from "@/components/ClientContent";
+import NavBar from "@/components/nav/navBar";
 
-// Font setup
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -44,15 +46,25 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} ${tagesschrift.variable} ${AlumniSansInlineOne.variable}`}
+      className={`
+        ${poppins.variable}
+        ${geistSans.variable}
+        ${geistMono.variable}
+        ${tagesschrift.variable}
+        ${AlumniSansInlineOne.variable}
+      `}
     >
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <main className="relative flex min-h-screen flex-col items-center justify-between bg-[#F9F9F9]/80 dark:bg-[#1D1D1F]/80 backdrop-blur-lg text-[#1D1D1F] dark:text-[#F9F9F9] overflow-hidden">
-            <div className="relative z-30 w-full max-w-[1280px]">
-              <NavBar />
-              {/* <MouseBlobs /> */}
-              {children}
+          <main className="relative flex min-h-screen flex-col items-center justify-between overflow-hidden text-[#1D1D1F] dark:text-[#F9F9F9]">
+            <div className="absolute inset-0 -z-10">
+              <StarSun />
+            </div>
+            <div className="relative z-30 w-full max-w-[1280px] flex flex-col flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400">
+              <div className=" sticky top-0 left-0">
+                <NavBar />
+              </div>
+              <ClientContent>{children}</ClientContent>
             </div>
             <Toaster position="top-center" richColors closeButton />
           </main>
