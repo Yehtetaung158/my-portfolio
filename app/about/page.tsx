@@ -14,9 +14,9 @@ const AboutPage = async () => {
   console.log("I am about data", aboutData);
   return (
     <>
-      <div className=" h-screen flex items-start mt-2">
-        <div className=" flex justify-between w-full items-end gap-2">
-          <div className=" w-[800px] space-y-4">
+      <div className=" h-screen flex items-center">
+        <div className=" flex  max-lg:flex-col-reverse justify-between w-full items-start gap-2">
+          <div className=" max-w-[800px] space-y-4">
             <div className=" flex gap-2 items-center ">
               <IsAdmin role={role!} name="About" path="/dashboard/about-edit" />
             </div>
@@ -24,7 +24,7 @@ const AboutPage = async () => {
             <p>{aboutData?.aboutMe}</p>
             <DownloadResume />
           </div>
-          <div className=" w-[400px] h-[600px] object-cover overflow-hidden  rounded-bl-4xl rounded-tr-4xl">
+          <div className=" w-[400px] max-h-[600px] max-lg:max-h-[400px] max-lg:max-w-[300px] object-cover overflow-hidden  rounded-bl-4xl rounded-tr-4xl">
             {aboutData?.image && (
               <Image
                 src={aboutData.image}
