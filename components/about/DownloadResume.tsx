@@ -7,9 +7,9 @@ const DownloadResume = () => {
     <Link
       href="/Ye_Htet_Aung_Frontend_Developer.pdf"
       download
-      className="inline-flex items-center  underline rounded-lg hover:bg-primary/90 transition text-purple-600"
+      className="inline-flex items-center max-sm:text-sm  underline rounded-lg hover:bg-primary/90 transition text-purple-600"
     >
-      <Download className="w-4 h-4 mr-2" />
+      <Download className="w-4 h-4 mr-2 max-sm:text-sm animate-bounce" />
       Download Resume
     </Link>
   );

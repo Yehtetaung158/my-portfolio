@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Copy, ArrowUpRight } from "lucide-react";
 import { toast } from "sonner";
@@ -14,7 +14,7 @@ export const LinkInDisplay = ({ link }: LinkInDisplayProps) => {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex max-sm:text-sm  items-center gap-2">
       <h1>Social medias</h1>
       <h1>:</h1>
       <a
@@ -24,7 +24,7 @@ export const LinkInDisplay = ({ link }: LinkInDisplayProps) => {
         className="flex items-center gap-1 underline text-blue-500"
       >
         <ArrowUpRight className="w-4 h-4" />
-        <span>{link}</span>
+        <span>{link.length > 15 ? `${link.slice(0, 15)}...` : link}</span>
       </a>
       <button onClick={() => copyToClipboard(link)}>
         <Copy className="w-4 h-4 text-gray-500 hover:text-black" />

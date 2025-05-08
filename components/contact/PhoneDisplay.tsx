@@ -14,7 +14,7 @@ export const PhoneDisplay = ({ phone }: PhoneDisplayProps) => {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex max-sm:text-sm  items-center gap-2">
       <h1>Phone</h1>
       <h1>:</h1>
       <a href={`tel:${phone}`} className="text-blue-500 underline">

@@ -4,7 +4,7 @@ import React from "react";
 
 export default function NaturalSun() {
   return (
-    <div className="absolute top-16 left-16 w-64 h-64 pointer-events-none">
+    <div className="absolute top-16 left-16 w-64 h-64 max-sm:w-40 max-sm:h-40 pointer-events-none">
       {/* Sun Core */}
       <div className="absolute inset-0 rounded-full bg-yellow-300 opacity-90 blur-2xl" />
 

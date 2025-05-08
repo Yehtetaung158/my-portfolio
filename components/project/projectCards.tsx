@@ -15,7 +15,7 @@ type Props = {
 
 const ProjectCards = ({ projectData }: Props) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 gap-8">
       {projectData.map((project) => (
         <div
           key={project.id}
@@ -26,8 +26,8 @@ const ProjectCards = ({ projectData }: Props) => {
             alt={project.name}
             className="w-full h-48 object-cover rounded"
           />
-          <h2 className="mt-4 text-xl font-semibold">{project.name}</h2>
-          <p className="text-slate-900 drop-shadow-lg dark:text-sky-100 ">
+          <h2 className="mt-4 text-xl max-sm:text-lg font-semibold mb-2">{project.name}</h2>
+          <p className="text-slate-900 drop-shadow-lg max-sm:text-sm dark:text-sky-100 ">
             {project.description}
           </p>
           <div className="mt-2 space-x-2">
@@ -35,7 +35,7 @@ const ProjectCards = ({ projectData }: Props) => {
               href={project.sourceCode}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 underline"
+              className="text-blue-500 max-sm:text-sm underline"
             >
               Source Code
             </a>
@@ -43,7 +43,7 @@ const ProjectCards = ({ projectData }: Props) => {
               href={project.project_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-500 underline"
+              className="text-green-500 max-sm:text-sm underline"
             >
               Live Demo
             </a>

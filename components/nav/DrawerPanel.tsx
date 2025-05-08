@@ -22,7 +22,7 @@ const DrawerPanel = () => {
           transition={{ type: "spring", stiffness: 300, damping: 28 }}
           className="fixed top-0 left-0 w-full h-full  text-slate-900 drop-shadow-lg dark:text-sky-100 z-40"
         >
-          <div className="flex flex-col items-center justify-center h-full text-2xl font-light space-y-6">
+          <div className="flex max-sm:text-lg flex-col items-center justify-center h-full text-2xl font-light space-y-6">
             <Link href="/" onClick={() => setOpen()}>
               Home
             </Link>

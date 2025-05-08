@@ -3,9 +3,9 @@ import React from "react";
 import NaturalSun from "./NaturalSun";
 
 const clouds = [
-  { className: "top-10 left-10", delay: "0s", size: "w-60 h-24" },
-  { className: "top-20 left-1/2", delay: "4s", size: "w-72 h-28" },
-  { className: "top-32 right-16", delay: "8s", size: "w-56 h-20" },
+  { className: "top-10 left-10", delay: "0s", size: "w-60 h-24 max-sm:w-44 max-sm:w-18 ",hiddenCloud :"" },
+  { className: "top-20 left-1/2", delay: "4s", size: "w-72 h-28", hiddenCloud:" max-sm:hidden" },
+  { className: "top-32 right-16", delay: "8s", size: "w-56 h-20",hiddenCloud:" max-sm:hidden" },
 ];
 
 export default function DaySky() {
@@ -25,7 +25,7 @@ export default function DaySky() {
       {clouds.map((cloud, i) => (
         <div
           key={i}
-          className={`absolute ${cloud.className} ${cloud.size} opacity-70 animate-cloud transition-transform`}
+          className={`absolute ${cloud.className} ${cloud.size} ${cloud.hiddenCloud} opacity-70  animate-cloud transition-transform`}
           style={{
             animationDelay: cloud.delay,
             animationDuration: "60s",

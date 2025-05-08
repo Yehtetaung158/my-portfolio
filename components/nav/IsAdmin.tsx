@@ -15,7 +15,7 @@ const IsAdmin = ({ name,role, path }: Props) => {
   const isAdminView = useStore((state) => state.isAdminView);
   return (
     <h1 className=" flex items-center gap-4">
-      <span className=" -z-30 text-3xl font-extrabold text-slate-900 drop-shadow-lg dark:text-sky-100 ">
+      <span className=" -z-30 text-3xl max-sm:text-xl font-extrabold text-slate-900 drop-shadow-lg dark:text-sky-100 ">
         {name}
       </span>
       {role === "admin" && isAdminView && (

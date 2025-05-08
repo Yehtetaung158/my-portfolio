@@ -21,10 +21,10 @@ const AboutPage = async () => {
               <IsAdmin role={role!} name="About" path="/dashboard/about-edit" />
             </div>
             <hr />
-            <p>{aboutData?.aboutMe}</p>
+            <p className=" max-sm:text-sm">{aboutData?.aboutMe}</p>
             <DownloadResume />
           </div>
-          <div className=" w-[400px] max-h-[600px] max-lg:max-h-[400px] max-lg:max-w-[300px] object-cover overflow-hidden  rounded-bl-4xl rounded-tr-4xl">
+          <div className=" w-[400px] max-h-[600px] max-lg:max-h-[400px] max-lg:max-w-[300px] max-sm:max-h-[300px] max-sm:max-w-[150px] object-cover overflow-hidden  rounded-bl-4xl rounded-tr-4xl">
             {aboutData?.image && (
               <Image
                 src={aboutData.image}

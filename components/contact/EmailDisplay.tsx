@@ -14,7 +14,7 @@ export const EmailDisplay = ({ email }: EmailDisplayProps) => {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex max-sm:text-sm items-center gap-2">
       <h1>EMAIL</h1>
       <h1>:</h1>
       <a
