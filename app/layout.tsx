@@ -9,6 +9,7 @@ import StarSun from "@/components/StarSun";
 import DaySky from "@/components/DaySky";
 import { ClientContent } from "@/components/ClientContent";
 import NavBar from "@/components/nav/navBar";
+import Theme from "@/components/Theme";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -58,12 +59,11 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="relative flex min-h-screen flex-col items-center justify-between overflow-hidden text-[#1D1D1F] dark:text-[#F9F9F9]">
             <div className="absolute inset-0 -z-10">
-              <StarSun />
+              <Theme />
             </div>
             <div className="relative z-30 w-full max-w-[1280px] flex flex-col flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400">
-              <div className=" sticky top-0 left-0">
-                <NavBar />
-              </div>
+              <NavBar />
+              <div className=" w-full h-18"></div>
               <ClientContent>{children}</ClientContent>
             </div>
             <Toaster position="top-center" richColors closeButton />

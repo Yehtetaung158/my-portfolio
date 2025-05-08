@@ -1,6 +1,4 @@
 import React from "react";
-import Logo from "../logo";
-import FancyNavToggle from "./FancyNavToggle";
 import AppleStyleDrawer from "./AppleStyleDrawer";
 import { auth } from "@/server/auth";
 

@@ -227,7 +227,7 @@ export default function StarSun() {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10 bg-gradient-to-b from-[#0a0a1f] via-[#0c1a2a] to-[#0a0a1f] overflow-hidden">
+    <div className="fixed inset-0 -z-50 bg-gradient-to-b from-[#0a0a1f] via-[#0c1a2a] to-[#0a0a1f] overflow-hidden">
       {/* Twinkling Stars */}
       {stars.map((star) => (
         <div
@@ -244,7 +244,7 @@ export default function StarSun() {
       {/* Moon */}
       <div
         className={clsx(
-          "absolute top-10 left-10 w-32 h-32 rounded-full bg-yellow-200",
+          "absolute top-10 right-10 w-32 h-32 rounded-full bg-yellow-200",
           "shadow-[0_0_60px_20px_rgba(255,255,150,0.5)]"
         )}
       />

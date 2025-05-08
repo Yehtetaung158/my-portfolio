@@ -10,6 +10,7 @@ import { signOut } from "next-auth/react";
 const DrawerPanel = () => {
   const open = useStore((state) => state.open);
   const setOpen = useStore((state) => state.setOpen);
+  const isAdminView = useStore((state) => state.isAdminView);
   return (
     <AnimatePresence>
       {open && (
@@ -19,7 +20,7 @@ const DrawerPanel = () => {
           animate={{ y: 0 }}
           exit={{ y: "-100%" }}
           transition={{ type: "spring", stiffness: 300, damping: 28 }}
-          className="fixed top-0 left-0 w-full h-full  text-[#1D1D1F] dark:text-[#F9F9F9] z-40"
+          className="fixed top-0 left-0 w-full h-full  text-slate-900 drop-shadow-lg dark:text-sky-100 z-40"
         >
           <div className="flex flex-col items-center justify-center h-full text-2xl font-light space-y-6">
             <Link href="/" onClick={() => setOpen()}>
@@ -34,15 +35,17 @@ const DrawerPanel = () => {
             <Link href="/contact" onClick={() => setOpen()}>
               Contact
             </Link>
-            <div
-              className="cursor-pointer  group hover:bg-red-200"
-              onClick={() => signOut()}
-            >
-              <LogOut className="w-5 h-5 mr-3 group-hover:translate-x-1 group-hover:scale-90  transition-all duration-300 ease-in-out group-hover:text-red-600 " />
-              <span className="text-sm font-medium group-hover:text-red-600 transition-all duration-300">
-                Logout
-              </span>
-            </div>
+            {isAdminView && (
+              <div
+                className="cursor-pointer  group flex"
+                onClick={() => signOut()}
+              >
+                <LogOut className="w-5 h-5 mr-3 group-hover:translate-x-1 group-hover:scale-90  transition-all duration-300 ease-in-out group-hover:text-red-600 " />
+                <span className="text-sm font-medium group-hover:text-red-600 transition-all duration-300">
+                  Logout
+                </span>
+              </div>
+            )}
           </div>
         </motion.div>
       )}

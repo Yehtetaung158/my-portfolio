@@ -10,7 +10,7 @@ const clouds = [
 
 export default function DaySky() {
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="fixed inset-0 -z-50 overflow-hidden">
       {/* Sky Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-sky-300 via-sky-200 to-sky-100" />
 

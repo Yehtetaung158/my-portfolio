@@ -15,16 +15,21 @@ type Props = {
 
 const ProjectCards = ({ projectData }: Props) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {projectData.map((project) => (
-        <div key={project.id} className="border p-4 rounded shadow">
+        <div
+          key={project.id}
+          className="border p-4 rounded shadow max-w-[400px] max-sm:w-full max-sm:mx-auto "
+        >
           <img
             src={project.imageUrl}
             alt={project.name}
             className="w-full h-48 object-cover rounded"
           />
           <h2 className="mt-4 text-xl font-semibold">{project.name}</h2>
-          <p className="text-gray-600">{project.description}</p>
+          <p className="text-slate-900 drop-shadow-lg dark:text-sky-100 ">
+            {project.description}
+          </p>
           <div className="mt-2 space-x-2">
             <a
               href={project.sourceCode}

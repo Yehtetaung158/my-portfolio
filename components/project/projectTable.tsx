@@ -15,6 +15,8 @@ import { toast } from "sonner";
 import { deleteProject, getProjects } from "@/server/action/projectAction";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import IsAdmin from "../nav/IsAdmin";
+import { getSession } from "@/lib/getSession";
 
 type Project = {
   id: number;
@@ -25,6 +27,7 @@ type Project = {
 };
 
 export default function ProjectTable({ data }: { data: Project[] }) {
+
   const [projects, setProjects] = useState<Project[]>([]);
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -49,7 +52,7 @@ export default function ProjectTable({ data }: { data: Project[] }) {
   return (
     <div className="p-6 space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold">Projects</h2>
+        <h1 className=" text-2xl font-black">Project Table</h1>
         <Button asChild>
           <Link href={"/dashboard/project/projectCreate"}>+ New</Link>
         </Button>

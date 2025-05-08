@@ -10,7 +10,7 @@ type Store = {
 };
 
 export const useStore = create<Store>((set, get) => ({
-  isDark: false,
+  isDark: true,
   open: false,
   isAdminView: true,
   setIsDark: () => set({ isDark: !get().isDark }),
