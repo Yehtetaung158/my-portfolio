@@ -17,16 +17,7 @@ const ContactPage = async () => {
     <div className=" h-screen flex justify-center items-center">
       <div className=" w-full space-y-4">
         <div className=" flex gap-2 items-center ">
-          {/* <h1 className=" flex items-center gap-4">
-            <span className=" text-4xl font-bold ">About</span>
-            {role === "admin" && (
-              <>
-                <Link href={"/dashboard/about-edit"}>
-                  <Pencil className=" size-4 text-purple-600" />
-                </Link>
-              </>
-            )}
-          </h1> */}
+         
           <div className=" flex gap-2 items-center ">
             <IsAdmin role={role!} name="Contact" path="/dashboard/contact" />
           </div>

@@ -7,8 +7,6 @@ import React from "react";
 
 const ProjectPage = async () => {
   const projectData = await db.query.projects.findMany();
-  // const session = await getSession();
-  //   const role = session?.user.role;
   const session = await auth();
   const role = session?.user.role ?? "user";
 

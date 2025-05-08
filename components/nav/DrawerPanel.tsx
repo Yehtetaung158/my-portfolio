@@ -36,7 +36,7 @@ const DrawerPanel = () => {
               Contact
             </Link>
             {isAdminView && (
-              <div
+              <button
                 className="cursor-pointer  group flex"
                 onClick={() => signOut()}
               >
@@ -44,7 +44,7 @@ const DrawerPanel = () => {
                 <span className="text-sm font-medium group-hover:text-red-600 transition-all duration-300">
                   Logout
                 </span>
-              </div>
+              </button>
             )}
           </div>
         </motion.div>
