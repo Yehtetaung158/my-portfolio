@@ -49,6 +49,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} ${tagesschrift.variable} ${AlumniSansInlineOne.variable}`}
+      style={{color:"transparent",filter:"invert(0)"}}
     >
       <body
         className={`
