@@ -47,15 +47,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`
+      suppressHydrationWarning
+      className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} ${tagesschrift.variable} ${AlumniSansInlineOne.variable}`}
+    >
+      <body
+        className={`
         ${poppins.variable}
         ${geistSans.variable}
         ${geistMono.variable}
         ${tagesschrift.variable}
         ${AlumniSansInlineOne.variable}
       `}
-    >
-      <body>
+      >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="relative flex min-h-screen flex-col items-center justify-between overflow-hidden text-[#1D1D1F] dark:text-[#F9F9F9]">
             <div className="absolute inset-0 -z-10">
