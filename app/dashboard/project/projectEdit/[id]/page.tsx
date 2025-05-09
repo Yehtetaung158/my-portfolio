@@ -1,11 +1,7 @@
 import ProjectEditForm from "@/components/project/projectEditForm";
 import { getProjectById } from "@/server/action/projectAction";
 
-interface ProjectEditProps {
-  params: { id: string };
-}
-
-export default async function ProjectEdit({ params }: ProjectEditProps) {
+export default async function ProjectEdit({ params }: { params: { id: string } }) {
   const projectId = parseInt(params.id);
   const project = await getProjectById(projectId);
 
