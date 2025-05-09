@@ -1,14 +1,11 @@
 import ProjectEditForm from "@/components/project/projectEditForm";
 import { getProjectById } from "@/server/action/projectAction";
-import type { Metadata, ResolvingMetadata } from "next";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function ProjectEdit({ params }: PageProps) {
+export default async function ProjectEdit({
+  params,
+}: {
+  params: { id: string };
+}) {
   const projectId = parseInt(params.id);
   const project = await getProjectById(projectId);
 
