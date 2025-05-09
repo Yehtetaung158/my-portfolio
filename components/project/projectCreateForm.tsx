@@ -57,7 +57,7 @@ export default function ProjectUploadForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-4 max-w-xl mx-auto"
+        className="space-y-4 max-w-xl mx-auto mt-24"
       >
         <FormField
           name="name"

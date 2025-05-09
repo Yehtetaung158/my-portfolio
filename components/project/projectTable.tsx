@@ -50,7 +50,7 @@ export default function ProjectTable({ data }: { data: Project[] }) {
   }, []);
 
   return (
-    <div className="p-6 space-y-4">
+    <div className="p-6 space-y-4 mt-24">
       <div className="flex items-center justify-between">
         <h1 className=" text-2xl font-black">Project Table</h1>
         <Button asChild>
