@@ -3,14 +3,14 @@ import { LinkInDisplay } from "@/components/contact/LinkInDisplay";
 import { PhoneDisplay } from "@/components/contact/PhoneDisplay";
 import IsAdmin from "@/components/nav/IsAdmin";
 import { db } from "@/server";
-import { auth } from "@/server/auth";
-import { Pencil } from "lucide-react";
-import Link from "next/link";
+// import { auth } from "@/server/auth";
+// import { Pencil } from "lucide-react";
+// import Link from "next/link";
 import React from "react";
 
 const ContactPage = async () => {
-  const session = await auth();
-  const role = session?.user.role;
+  // const session = await auth();
+  // const role = session?.user.role;
   const contactData = await db.query.contact.findFirst();
   console.log("I am contact data", contactData);
   return (
@@ -19,7 +19,9 @@ const ContactPage = async () => {
         <div className=" flex gap-2 items-center ">
          
           <div className=" flex gap-2 items-center ">
-            <IsAdmin role={role!} name="Contact" path="/dashboard/contact" />
+            <IsAdmin 
+            // role={role!} 
+            name="Contact" path="/dashboard/contact" />
           </div>
           <hr />
         </div>

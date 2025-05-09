@@ -19,18 +19,18 @@
 // app/components/nav/NavBar.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import AppleStyleDrawer from "./AppleStyleDrawer";
-import { getSession } from "@/lib/getSession";
+// import { getSession } from "@/lib/getSession";
 
 export default function NavBar() {
-  const [role, setRole] = useState<"admin"|"user"|"guest">("guest");
+  // const [role, setRole] = useState<"admin"|"user"|"guest">("guest");
 
-  useEffect(() => {
-    getSession().then(sess => {
-      setRole(sess?.user?.role ?? "guest");
-    });
-  }, []);
+  // useEffect(() => {
+  //   getSession().then(sess => {
+  //     setRole(sess?.user?.role ?? "guest");
+  //   });
+  // }, []);
 
-  return <AppleStyleDrawer role={role} />;
+  return <AppleStyleDrawer/>;
 }
