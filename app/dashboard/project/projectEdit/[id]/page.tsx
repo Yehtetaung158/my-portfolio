@@ -1,9 +1,8 @@
 import ProjectEditForm from "@/components/project/projectEditForm";
 import { getProjectById } from "@/server/action/projectAction";
 
-export default async function ProjectEdit({ params }: { params: { id: string } }) {
-  const projectId = parseInt(params.id);
-  const project = await getProjectById(projectId);
+export default async function ProjectEdit({ params }: { params: { id: number } }) {
+  const project = await getProjectById(params.id);
 
   if (!project) {
     return <div className="text-red-500">Project not found</div>;
