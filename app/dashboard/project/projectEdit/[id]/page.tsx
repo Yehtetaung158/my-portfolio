@@ -4,9 +4,9 @@ import { getProjectById } from "@/server/action/projectAction";
 export default async function ProjectEdit({
   params,
 }: {
-  params: { id: string };
+  params: { id: number };
 }) {
-  const projectId = parseInt(params.id);
+  const projectId = params.id;
   const project = await getProjectById(projectId);
 
   if (!project) {
