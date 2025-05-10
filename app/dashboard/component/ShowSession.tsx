@@ -1,19 +1,16 @@
-'use client';
-import { useStore } from '@/store/store';
-import React from 'react';
+// app/dashboard/component/ShowSession.tsx
+"use client";
+import React from "react";
+import { useStore } from "@/store/store";
 
-const ShowSession = () => {
-  const session = useStore(s => s.sessionData);
+export default function ShowSession() {
+  const session = useStore((s) => s.sessionData);
 
-  if (!session?.user) {
-    return null;
-  }
+  if (!session) return <span>…</span>;
 
   return (
-    <h2 className="text-4xl max-sm:text-2xl text-slate-800 dark:text-sky-200">
-      {session.user.name} <span>({session.user.role})</span>
-    </h2>
+    <span>
+      {session.user.name} ({session.user.role})
+    </span>
   );
-};
-
-export default ShowSession;
+}

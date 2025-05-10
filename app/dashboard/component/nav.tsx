@@ -4,17 +4,17 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useStore } from "@/store/store";
+import ShowSession from "./ShowSession";
 
 type Props = {
   session: any;
 };
 
 const Nav = ({ session }: Props) => {
-  const setSession = useStore((s) => s.setSessionData);
+  const setSessionData = useStore((s) => s.setSessionData);
   useEffect(() => {
-    if (session) setSession(session);
-  }, [session, setSession]);
-
+    setSessionData(session);
+  }, [session, setSessionData]);
   const pathname = usePathname();
 
   const links = [
@@ -36,7 +36,7 @@ const Nav = ({ session }: Props) => {
           {link.label}
         </Link>
       ))}
-      <h1>{session?.user?.name}</h1>
+      {/* <ShowSession/> */}
     </nav>
   );
 };
