@@ -13,10 +13,8 @@ export default async function DashboardLayout({
   return (
     <div className=" flex flex-col h-screen">
       <div className=" h-24 w-full"></div>
-      <Nav/>
-      <div className= " grow w-full h-full">
-        {children}
-      </div>
+       <Nav session={session} />
+      <div className=" grow w-full h-full">{children}</div>
     </div>
   );
 }

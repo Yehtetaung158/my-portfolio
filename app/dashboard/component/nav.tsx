@@ -1,10 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useStore } from "@/store/store";
 
-const Nav = () => {
+type Props = {
+  session: any;
+};
+
+const Nav = ({ session }: Props) => {
+  const setSession = useStore((s) => s.setSessionData);
+  useEffect(() => {
+    if (session) setSession(session);
+  }, [session, setSession]);
+
   const pathname = usePathname();
 
   const links = [
