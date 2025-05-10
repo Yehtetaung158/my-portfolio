@@ -11,7 +11,7 @@ import { randomUUID } from "crypto"; // ID ထုတ်ရန်
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: DrizzleAdapter(db),
   session: { strategy: "jwt" },
-  secret: process.env.AUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   debug: true,
 
   providers: [
