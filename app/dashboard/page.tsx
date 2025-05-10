@@ -1,11 +1,8 @@
-// no "use client" here – this stays a Server Component
-import { auth } from "@/server/auth";
-import { redirect } from "next/navigation";
 import LogOutBtn from "./component/logOutBtn";
+// import { getSession } from "@/lib/getSession";
 
 export default async function DashboardHome() {
-  const session = await auth();
-  if (!session) redirect("/auth/login");
+  // const session = await getSession()
 
   return (
     <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
@@ -13,7 +10,7 @@ export default async function DashboardHome() {
         Nothing Venture Nothing Gain
       </h1>
       <h2 className="text-4xl max-sm:text-2xl text-slate-800 dark:text-sky-200">
-        {session?.user.name} <span>({session?.user.role})</span>
+        {/* {session?.user.name} <span>({session?.user.role})</span> */}
       </h2>
 
       <LogOutBtn/>
