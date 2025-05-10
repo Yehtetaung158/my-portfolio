@@ -36,7 +36,7 @@ const Nav = ({ session }: Props) => {
           {link.label}
         </Link>
       ))}
-      <h1>{session?.user.name}</h1>
+      <h1>{session?.user?.name}</h1>
     </nav>
   );
 };
