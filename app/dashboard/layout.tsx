@@ -1,12 +1,22 @@
-import { getSession } from "next-auth/react";
+import { auth } from "@/server/auth";
 import { redirect } from "next/navigation";
+import Nav from "./component/nav";
+export const dynamic = "force-dynamic";
 
-// app/dashboard/layout.tsx
-export const dynamic = 'force-dynamic';   // ← tell Next.js “this entire segment is dynamic”
-
-export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  // now you can call getSession() without polluting the build logs
-  const session = await getSession();  
-  if (!session) redirect('/auth/login');
-  return <>{children}</>;
+export default async function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const session = await auth();
+  if (!session) redirect("/auth/login");
+  return (
+    <div className=" flex flex-col h-screen">
+      <div className=" h-24 w-full"></div>
+      <Nav/>
+      <div className= " grow w-full h-full">
+        {children}
+      </div>
+    </div>
+  );
 }

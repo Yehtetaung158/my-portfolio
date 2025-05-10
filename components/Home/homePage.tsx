@@ -24,7 +24,7 @@ const HomePage = () => {
         </p>
         {/* Link */}
         <div className=" flex max-sm:text-sm justify-center mt-4 items-center gap-2">
-          <Link href="/projects">
+          <Link href="/project">
             <button className=" flex gap-2">
               <span>
                 <ArrowUpRight className=" max-sm:size-5 " />
@@ -32,7 +32,7 @@ const HomePage = () => {
               <span>See my projects</span>
             </button>
           </Link>
-          <Link href="/blog">
+          <Link href="/about">
             <button className=" flex gap-2">
               <span>
                 <ArrowUpRight className=" max-sm:size-5 "  />
