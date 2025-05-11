@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import DownloadResume from "@/components/about/DownloadResume";
 import { db } from "@/server";
 // import { auth } from "@/server/auth";

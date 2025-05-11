@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { EmailDisplay } from "@/components/contact/EmailDisplay";
 import { LinkInDisplay } from "@/components/contact/LinkInDisplay";
 import { PhoneDisplay } from "@/components/contact/PhoneDisplay";
