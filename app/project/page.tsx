@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import IsAdmin from "@/components/nav/IsAdmin";
 import ProjectCards from "@/components/project/projectCards";
 import { db } from "@/server";
