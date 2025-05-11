@@ -1,12 +1,13 @@
 import IsAdmin from "@/components/nav/IsAdmin";
 import ProjectCards from "@/components/project/projectCards";
 import { db } from "@/server";
+import { projects } from "@/server/schema";
 // import { auth } from "@/server/auth";
 // import { getSession } from "next-auth/react";
 import React from "react";
 
 const ProjectPage = async () => {
-  const projectData = await db.query.projects.findMany();
+  const projectData = await db.select().from(projects)
   // const session = await auth();
   // const role = session?.user.role ?? "user";
 
