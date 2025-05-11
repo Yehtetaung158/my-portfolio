@@ -18,6 +18,7 @@ import {
 } from "../ui/form";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
+import Image from "next/image";
 
 export default function AboutForm({
   initialData,
@@ -83,6 +84,18 @@ export default function AboutForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Image</FormLabel>
+               {/* Display existing image */}
+                            {field.value && (
+                              <div className="mb-2">
+                                <Image
+                                  src={field.value}
+                                  alt="Current project image"
+                                  width={300}
+                                  height={200}
+                                  className="rounded-md object-cover"
+                                />
+                              </div>
+                            )}
               <UploadButton
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
