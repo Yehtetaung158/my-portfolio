@@ -5,7 +5,8 @@ import Link from "next/link";
 const DownloadResume = () => {
   return (
     <Link
-      href="/Ye_Htet_Aung_Frontend_Developer.pdf"
+      // href="/Ye_Htet_Aung_Frontend_Developer.pdf"
+      href="Ye_Htet_Aung_Frontend_Developer-1.pdf"
       download
       className="inline-flex items-center max-sm:text-sm  underline rounded-lg hover:bg-primary/90 transition text-purple-600"
     >
