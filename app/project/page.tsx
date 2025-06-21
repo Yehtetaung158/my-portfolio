@@ -12,15 +12,17 @@ const ProjectPage = async () => {
   const projectData = await getProjects()
   // const session = await auth();
   // const role = session?.user.role ?? "user";
+  console.log("Project Data:", projectData);
 
   return (
     <div className="overflow-auto h-full mt-14" >
       <div className=" space-y-4">
-        <IsAdmin 
+        {/* <IsAdmin 
         // role={role!} 
-        name="Projects" path="/dashboard/project" />
+        name="Projects" path="/dashboard/project" /> */}
         <hr />
         {projectData && <ProjectCards projectData={projectData} />}
+        {/* {projectData && <ProjectCards  />} */}
       </div>
     </div>
   );

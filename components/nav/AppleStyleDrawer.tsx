@@ -5,12 +5,7 @@ import ThemeToggleButton from "./ThemeToggleButton";
 import { useStore } from "@/store/store";
 import DrawerPanel from "./DrawerPanel";
 
-// type Props = {
-//   role: string;
-// };
-
 export default function AppleTopNavWithButton(
-  // { role }: Props
 ) {
   const open = useStore((state) => state.open);
   const setOpen = useStore((state) => state.setOpen);
@@ -22,16 +17,6 @@ export default function AppleTopNavWithButton(
         <span className="text-xl font-semibold"></span>
 
         <div className="flex gap-6 max-sm:gap-4 justify-center items-center z-50">
-          {/* {role === "admin" && (
-            <>
-              <button
-                className=" underline max-sm:text-sm"
-                onClick={() => setIsAdminView()}
-              >
-                {isAdminView ? <>admin view</> : <>user view</>}
-              </button>
-            </>
-          )} */}
           <ThemeToggleButton />
           <button
             onClick={() => setOpen()}
@@ -64,7 +49,6 @@ export default function AppleTopNavWithButton(
         </div>
       </div>
 
-      {/* Top-down Drawer Panel */}
       <DrawerPanel />
     </>
   );
