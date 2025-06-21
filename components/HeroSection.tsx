@@ -50,7 +50,7 @@ function HeroSection({ image, aboutMe }: HeroSectionProps) {
     { value: "2", label: "Years Exp" },
     // { value: "50+", label: "Projects" },
     // { value: "20+", label: "Clients" },
-    { value: "9", label: "Technologies" },
+    { value: "9 +", label: "Technologies" },
   ];
 
   // Testimonial data

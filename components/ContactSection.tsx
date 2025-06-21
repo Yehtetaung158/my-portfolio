@@ -143,7 +143,7 @@ const ContactSection = () => {
                       Phone
                     </h4>
                     <a
-                      href="tel:+959123456789"
+                      href="tel:+959784224472"
                       className="text-blue-600 dark:text-blue-400 hover:underline"
                     >
                       +959 784 224 472

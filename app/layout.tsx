@@ -71,7 +71,6 @@ export default function RootLayout({
             <div className="relative z-30 w-full max-w-[1280px] flex flex-col flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400">
             </div>
             <Toaster position="top-center" richColors closeButton /> */}
-              {/* {projectData && <ProjectCards projectData={projectData} />} */}
           </main>
         </ThemeProvider>
       </body>

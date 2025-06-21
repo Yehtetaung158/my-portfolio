@@ -320,13 +320,13 @@ const ProjectCards = ({ projectData }: Props) => {
           </div>
           
           {/* View more button */}
-          <div className={`mt-16 text-center transition-opacity duration-700 delay-500 ${
+          {/* <div className={`mt-16 text-center transition-opacity duration-700 delay-500 ${
             isVisible ? 'opacity-100' : 'opacity-0'
           }`}>
             <button className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
               View All Projects
             </button>
-          </div>
+          </div> */}
         </>
       ) : (
         <div className="text-center py-12">
