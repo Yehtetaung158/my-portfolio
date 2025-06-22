@@ -56,8 +56,7 @@
 
 // export default ProjectCards;
 
-'use client';
-
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
@@ -69,7 +68,7 @@ type Project = {
   description: string;
   sourceCode: string;
   project_url: string;
-  // technologies: string[];
+  technologies?: string;
 };
 
 type Props = {
@@ -79,8 +78,8 @@ type Props = {
 const ProjectCards = ({ projectData }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  console.log("Project Data:", projectData);  
-  
+  console.log("Project Data:", projectData);
+
   useEffect(() => {
     // Simple fade-in animation
     setIsVisible(true);
@@ -89,148 +88,167 @@ const ProjectCards = ({ projectData }: Props) => {
   return (
     <div className="py-12 px-4 max-w-7xl mx-auto" id="projects">
       <div className="text-center mb-16">
-        <h2 
-          className={`text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-500 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+        <h2
+          className={`text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-500 transition-opacity duration-700 ${
+            isVisible ? "opacity-100" : "opacity-0"
+          }`}
         >
           My Projects
         </h2>
-        <p 
-          className={`mt-4 text-xl max-w-2xl mx-auto text-slate-600 dark:text-slate-400 transition-opacity duration-700 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+        <p
+          className={`mt-4 text-xl max-w-2xl mx-auto text-slate-600 dark:text-slate-400 transition-opacity duration-700 delay-300 ${
+            isVisible ? "opacity-100" : "opacity-0"
+          }`}
         >
-          Here are some of my recent works. Each project reflects my passion for creating 
-          impactful digital experiences.
+          Here are some of my recent works. Each project reflects my passion for
+          creating impactful digital experiences.
         </p>
       </div>
-      
+
       {projectData && projectData.length > 0 ? (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {projectData.map((project, index) => (
               <div
-  key={project.id}  
-  className={`group relative overflow-hidden rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transition-all duration-500 hover:shadow-2xl transform hover:-translate-y-3 ${
-    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-  }`}
-  style={{ transitionDelay: `${index * 100}ms` }}
->
-  {/* Glow effect on hover */}
-  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 dark:from-blue-700/10 dark:to-purple-700/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-  
-  {/* Project image with overlay */}
-  <div className="relative overflow-hidden">
-    <div className="h-60 overflow-hidden">
-      <div className="relative w-full h-full">
-        <img
-          src={project.imageUrl}
-          alt={project.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-        
-        {/* Animated overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
-        
-        {/* Floating effect container */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="absolute top-4 left-4 w-8 h-8 bg-blue-500 rounded-full animate-float" style={{ animationDelay: '0.1s' }}></div>
-          <div className="absolute bottom-4 right-4 w-6 h-6 bg-indigo-500 rounded-full animate-float" style={{ animationDelay: '0.3s' }}></div>
-          <div className="absolute top-1/3 right-8 w-5 h-5 bg-purple-500 rounded-full animate-float" style={{ animationDelay: '0.5s' }}></div>
-        </div>
-      </div>
-    </div>
-    
-    {/* Technology badges */}
-    {/* <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-      {["React", "Node.js", "MongoDB"].map((tech, idx) => (
-        <span
-          key={idx}
-          className="px-3 py-1.5 text-xs font-medium bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-full shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
-        >
-          {tech}
-        </span>
-      ))}
-    </div>
-     */}
-    {/* Links on hover */}
-    <div className="absolute inset-0 flex items-center justify-center gap-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-      <a
-        href={project.sourceCode}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all transform hover:scale-110 shadow-lg"
-        aria-label="Source code"
-      >
-        <FaGithub className="text-xl" />
-      </a>
-      <a
-        href={project.project_url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-green-600 hover:bg-green-600 hover:text-white transition-all transform hover:scale-110 shadow-lg"
-        aria-label="Live demo"
-      >
-        <FaExternalLinkAlt className="text-xl" />
-      </a>
-    </div>
-  </div>
-  
-  {/* Project content */}
-  <div className="p-6 relative z-10">
-    <div className="flex justify-between items-start mb-3">
-      <h3 className="text-xl font-bold text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-        {project.name}
-      </h3>
-      <div className="flex gap-2">
-        <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></span>
-        <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></span>
-      </div>
-    </div>
-    
-    <p className="text-slate-600 dark:text-slate-300 mb-4 min-h-[60px]">
-      {project.description}
-    </p>
-    
-    {/* Progress bar style indicator */}
-    <div className="relative pt-1 mb-4">
-      <div className="overflow-hidden h-2 mb-2 text-xs flex rounded bg-slate-200 dark:bg-slate-700">
-        <div 
-          style={{ width: `${Math.min(100, Math.max(30, Math.floor(Math.random() * 70) + 30))}%` }}
-          className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-blue-500 to-indigo-600"
-        ></div>
-      </div>
-      <div className="text-right text-xs text-slate-500 dark:text-slate-400">
-        Project Completion
-      </div>
-    </div>
-    
-    {/* Links (visible on mobile) */}
-    <div className="flex gap-4 sm:hidden mt-4">
-      <a
-        href={project.sourceCode}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
-      >
-        <FaGithub /> Source
-      </a>
-      <a
-        href={project.project_url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors"
-      >
-        <FaExternalLinkAlt /> Demo
-      </a>
-    </div>
-  </div>
-  
-  {/* Corner accent */}
-  <div className="absolute top-0 right-0 w-16 h-16">
-    <div className="absolute transform rotate-45 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-xs w-48 h-10 -right-20 -top-2 flex items-center justify-center">
-      Featured
-    </div>
-  </div>
-</div>
+                key={project.id}
+                className={`group relative overflow-hidden rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transition-all duration-500 hover:shadow-2xl transform hover:-translate-y-3 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 dark:from-blue-700/10 dark:to-purple-700/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                {/* Project image with overlay */}
+                <div className="relative overflow-hidden">
+                  <div className="h-60 overflow-hidden">
+                    <div className="relative w-full h-full">
+                      <img
+                        src={project.imageUrl}
+                        alt={project.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+
+                      {/* Animated overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
+
+                      {/* Floating effect container */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div
+                          className="absolute top-4 left-4 w-8 h-8 bg-blue-500 rounded-full animate-float"
+                          style={{ animationDelay: "0.1s" }}
+                        ></div>
+                        <div
+                          className="absolute bottom-4 right-4 w-6 h-6 bg-indigo-500 rounded-full animate-float"
+                          style={{ animationDelay: "0.3s" }}
+                        ></div>
+                        <div
+                          className="absolute top-1/3 right-8 w-5 h-5 bg-purple-500 rounded-full animate-float"
+                          style={{ animationDelay: "0.5s" }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Links on hover */}
+                  <div className="absolute inset-0 flex items-center justify-center gap-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <a
+                      href={project.sourceCode}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all transform hover:scale-110 shadow-lg"
+                      aria-label="Source code"
+                    >
+                      <FaGithub className="text-xl" />
+                    </a>
+                    <a
+                      href={project.project_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-green-600 hover:bg-green-600 hover:text-white transition-all transform hover:scale-110 shadow-lg"
+                      aria-label="Live demo"
+                    >
+                      <FaExternalLinkAlt className="text-xl" />
+                    </a>
+                  </div>
+                </div>
+                {/* Project content */}
+                <div className="p-6 relative z-10">
+                  <div className="flex justify-between items-start mb-3">
+                    <div className=" flex gap-2">
+                      <h3 className="text-xl font-bold text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {project.name}
+                    </h3>
+                    {/* Technology badges */}
+                    <div className=" flex flex-wrap gap-2">
+                      <span className="px-3 py-1.5 text-xs font-medium bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-full">
+                        {project.technologies}
+                      </span>
+                    </div>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                      <span
+                        className="w-2 h-2 bg-green-500 rounded-full animate-pulse"
+                        style={{ animationDelay: "0.2s" }}
+                      ></span>
+                      <span
+                        className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"
+                        style={{ animationDelay: "0.4s" }}
+                      ></span>
+                    </div>
+                  </div>
+
+                  <p className="text-slate-600 dark:text-slate-300 mb-4 min-h-[60px]">
+                    {project.description}
+                  </p>
+
+                  {/* Progress bar style indicator */}
+                  <div className="relative pt-1 mb-4">
+                    <div className="overflow-hidden h-2 mb-2 text-xs flex rounded bg-slate-200 dark:bg-slate-700">
+                      <div
+                        style={{
+                          width: `${Math.min(
+                            100,
+                            Math.max(30, Math.floor(Math.random() * 70) + 30)
+                          )}%`,
+                        }}
+                        className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-blue-500 to-indigo-600"
+                      ></div>
+                    </div>
+                    <div className="text-right text-xs text-slate-500 dark:text-slate-400">
+                      Project Completion
+                    </div>
+                  </div>
+
+                  {/* Links (visible on mobile) */}
+                  <div className="flex gap-4 sm:hidden mt-4">
+                    <a
+                      href={project.sourceCode}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+                    >
+                      <FaGithub /> Source
+                    </a>
+                    <a
+                      href={project.project_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors"
+                    >
+                      <FaExternalLinkAlt /> Demo
+                    </a>
+                  </div>
+                </div>
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-16 h-16">
+                  <div className="absolute transform rotate-45 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-xs w-48 h-10 -right-20 -top-2 flex items-center justify-center">
+                    Featured
+                  </div>
+                </div>
+              </div>
               // <div
               //   key={project.id}
               //   className={`group relative overflow-hidden rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transition-all duration-500 hover:shadow-2xl transform hover:-translate-y-2 ${
@@ -247,14 +265,14 @@ const ProjectCards = ({ projectData }: Props) => {
               //         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               //       />
               //     </div>
-                  
+
               //     {/* Gradient overlay */}
               //     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-80 transition-opacity group-hover:opacity-90" />
-                  
+
               //     {/* Technology badges */}
               //     <div className="absolute top-4 right-4 flex flex-wrap gap-2 justify-end">
               //       {/* {project.technologies.map((tech, idx) => (
-              //         <span 
+              //         <span
               //           key={idx}
               //           className="px-3 py-1 text-xs font-medium bg-blue-600 text-white rounded-full shadow transition-transform duration-300 hover:-translate-y-0.5"
               //         >
@@ -262,7 +280,7 @@ const ProjectCards = ({ projectData }: Props) => {
               //         </span>
               //       ))} */}
               //     </div>
-                  
+
               //     {/* Links on hover */}
               //     <div className="absolute inset-0 flex items-center justify-center gap-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               //       <a
@@ -285,7 +303,7 @@ const ProjectCards = ({ projectData }: Props) => {
               //       </a>
               //     </div>
               //   </div>
-                
+
               //   {/* Project content */}
               //   <div className="p-6">
               //     <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -294,7 +312,7 @@ const ProjectCards = ({ projectData }: Props) => {
               //     <p className="text-slate-600 dark:text-slate-300 mb-4">
               //       {project.description}
               //     </p>
-                  
+
               //     {/* Links (visible on mobile) */}
               //     <div className="flex gap-4 sm:hidden mt-4">
               //       <a
@@ -318,7 +336,7 @@ const ProjectCards = ({ projectData }: Props) => {
               // </div>
             ))}
           </div>
-          
+
           {/* View more button */}
           {/* <div className={`mt-16 text-center transition-opacity duration-700 delay-500 ${
             isVisible ? 'opacity-100' : 'opacity-0'
@@ -337,7 +355,8 @@ const ProjectCards = ({ projectData }: Props) => {
             No Projects Found
           </h3>
           <p className="text-slate-600 dark:text-slate-400 max-w-md mx-auto">
-            It looks like there are no projects to display at the moment. Please check back later.
+            It looks like there are no projects to display at the moment. Please
+            check back later.
           </p>
         </div>
       )}
@@ -346,16 +365,6 @@ const ProjectCards = ({ projectData }: Props) => {
 };
 
 export default ProjectCards;
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useEffect } from "react";
 // import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
@@ -376,7 +385,7 @@ export default ProjectCards;
 
 // const ProjectCards = ({ projectData }: Props) => {
 //   const [isVisible, setIsVisible] = useState(false);
-  
+
 //   useEffect(() => {
 //     // Simple fade-in animation without Framer Motion
 //     setIsVisible(true);
@@ -385,19 +394,19 @@ export default ProjectCards;
 //   return (
 //     <div className="py-12 px-4 max-w-7xl mx-auto">
 //       <div className="text-center mb-16">
-//         <h2 
+//         <h2
 //           className={`text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-500 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
 //         >
 //           My Projects
 //         </h2>
-//         <p 
+//         <p
 //           className={`mt-4 text-xl max-w-2xl mx-auto text-slate-600 dark:text-slate-400 transition-opacity duration-700 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
 //         >
-//           Here are some of my recent works. Each project reflects my passion for creating 
+//           Here are some of my recent works. Each project reflects my passion for creating
 //           impactful digital experiences.
 //         </p>
 //       </div>
-      
+
 //       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 //         {projectData?.map((project, index) => (
 //           <div
@@ -416,14 +425,14 @@ export default ProjectCards;
 //                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
 //                 />
 //               </div>
-              
+
 //               {/* Gradient overlay */}
 //               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-80 transition-opacity group-hover:opacity-90" />
-              
+
 //               {/* Technology badges */}
 //               <div className="absolute top-4 right-4 flex flex-wrap gap-2 justify-end">
 //                 {project.technologies.map((tech, idx) => (
-//                   <span 
+//                   <span
 //                     key={idx}
 //                     className="px-3 py-1 text-xs font-medium bg-blue-600 text-white rounded-full shadow transition-transform duration-300 hover:-translate-y-0.5"
 //                   >
@@ -431,7 +440,7 @@ export default ProjectCards;
 //                   </span>
 //                 ))}
 //               </div>
-              
+
 //               {/* Links on hover */}
 //               <div className="absolute inset-0 flex items-center justify-center gap-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 //                 <a
@@ -454,7 +463,7 @@ export default ProjectCards;
 //                 </a>
 //               </div>
 //             </div>
-            
+
 //             {/* Project content */}
 //             <div className="p-6">
 //               <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -463,7 +472,7 @@ export default ProjectCards;
 //               <p className="text-slate-600 dark:text-slate-300 mb-4">
 //                 {project.description}
 //               </p>
-              
+
 //               {/* Links (visible on mobile) */}
 //               <div className="flex gap-4 sm:hidden mt-4">
 //                 <a
@@ -487,7 +496,7 @@ export default ProjectCards;
 //           </div>
 //         ))}
 //       </div>
-      
+
 //       {/* View more button */}
 //       <div className={`mt-16 text-center transition-opacity duration-700 delay-500 ${
 //         isVisible ? 'opacity-100' : 'opacity-0'
@@ -600,7 +609,7 @@ export default ProjectCards;
 //   return (
 //     <div className="py-12 px-4 max-w-7xl mx-auto">
 //       <div className="text-center mb-16">
-//         <motion.h2 
+//         <motion.h2
 //           className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-500"
 //           initial={{ opacity: 0, y: -20 }}
 //           animate={{ opacity: 1, y: 0 }}
@@ -608,18 +617,18 @@ export default ProjectCards;
 //         >
 //           My Projects
 //         </motion.h2>
-//         <motion.p 
+//         <motion.p
 //           className="mt-4 text-xl max-w-2xl mx-auto text-slate-600 dark:text-slate-400"
 //           initial={{ opacity: 0 }}
 //           animate={{ opacity: 1 }}
 //           transition={{ duration: 0.6, delay: 0.3 }}
 //         >
-//           Here are some of my recent works. Each project reflects my passion for creating 
+//           Here are some of my recent works. Each project reflects my passion for creating
 //           impactful digital experiences.
 //         </motion.p>
 //       </div>
-      
-//       <motion.div 
+
+//       <motion.div
 //         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
 //         variants={container}
 //         initial="hidden"
@@ -641,14 +650,14 @@ export default ProjectCards;
 //                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
 //                 />
 //               </div>
-              
+
 //               {/* Gradient overlay */}
 //               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-80 transition-opacity group-hover:opacity-90" />
-              
+
 //               {/* Technology badges */}
 //               <div className="absolute top-4 right-4 flex flex-wrap gap-2 justify-end">
 //                 {project.technologies.map((tech, index) => (
-//                   <span 
+//                   <span
 //                     key={index}
 //                     className="px-3 py-1 text-xs font-medium bg-blue-600 text-white rounded-full shadow"
 //                   >
@@ -656,7 +665,7 @@ export default ProjectCards;
 //                   </span>
 //                 ))}
 //               </div>
-              
+
 //               {/* Links on hover */}
 //               <div className="absolute inset-0 flex items-center justify-center gap-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 //                 <a
@@ -679,7 +688,7 @@ export default ProjectCards;
 //                 </a>
 //               </div>
 //             </div>
-            
+
 //             {/* Project content */}
 //             <div className="p-6">
 //               <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -688,7 +697,7 @@ export default ProjectCards;
 //               <p className="text-slate-600 dark:text-slate-300 mb-4">
 //                 {project.description}
 //               </p>
-              
+
 //               {/* Links (visible on mobile) */}
 //               <div className="flex gap-4 sm:hidden mt-4">
 //                 <a
@@ -712,9 +721,9 @@ export default ProjectCards;
 //           </motion.div>
 //         ))}
 //       </motion.div>
-      
+
 //       {/* View more button */}
-//       <motion.div 
+//       <motion.div
 //         className="mt-16 text-center"
 //         initial={{ opacity: 0, y: 20 }}
 //         animate={{ opacity: 1, y: 0 }}
@@ -789,4 +798,3 @@ export default ProjectCards;
 // };
 
 // export default ProjectCards;
-

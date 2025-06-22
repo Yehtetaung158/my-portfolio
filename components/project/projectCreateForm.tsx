@@ -121,6 +121,20 @@ export default function ProjectUploadForm({
           )}
         />
 
+         <FormField
+          name="technologies"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Technologies</FormLabel>
+              <FormControl>
+                <Input placeholder="React, Next.js" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <FormField
           name="imageUrl"
           control={form.control}

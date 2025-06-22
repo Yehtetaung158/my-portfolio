@@ -116,6 +116,21 @@ export default function ProjectEditForm({
           )}
         />
 
+        
+        <FormField
+          name="technologies"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Technologies</FormLabel>
+              <FormControl>
+                <Input  {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <FormField
           name="imageUrl"
           control={form.control}

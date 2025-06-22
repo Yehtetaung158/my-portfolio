@@ -50,6 +50,13 @@
       "when": 1746529116538,
       "tag": "0006_greedy_wolfsbane",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1750596405943,
+      "tag": "0007_great_giant_girl",
+      "breakpoints": true
     }
   ]
 }

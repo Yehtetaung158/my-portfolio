@@ -8,6 +8,7 @@ import { eq } from "drizzle-orm";
 
 // Create
 export async function createProject(input: z.infer<typeof projectSchema>) {
+  console.log("Creating project with input:", input);
   const parse = projectSchema.safeParse(input);
   if (!parse.success) {
     return { success: false, error: parse.error.flatten().fieldErrors };
@@ -48,21 +49,24 @@ export async function updateProject({
   imageUrl,
   description,
   sourceCode,
-  project_url
+  project_url,
+  technologies
 }: {
   id: number;
   name: string;
   imageUrl: string;
   description: string;
   sourceCode: string;
-  project_url:string;
+  project_url: string;
+  technologies: string[]; // Add this line (adjust type as needed)
 }) {
   const parse = projectSchema.safeParse({
     name,
     imageUrl,
     description,
     sourceCode,
-    project_url
+    project_url,
+    technologies // Add this line
   });
 
   if (!parse.success) {
