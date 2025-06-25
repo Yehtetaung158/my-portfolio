@@ -81,7 +81,7 @@ const ProjectButton = () => {
 
   return (
     <motion.div
-      className="relative"
+      className="relative "
       initial={{ opacity: 0, y: 20 }}
       animate={{
         opacity: isVisible ? 1 : 0,
@@ -90,7 +90,7 @@ const ProjectButton = () => {
       transition={{ duration: 0.7, delay: 1.2 }}
     >
       {/* Buttons container */}
-      <div className="flex flex-wrap justify-start gap-6">
+      <div className="flex flex-wrap justify-start gap-6 ">
         {/* Project Button */}
         <motion.div className="relative">
           {/* Floating particles for projects button */}

@@ -128,7 +128,7 @@ function HeroSection({ image, aboutMe }: HeroSectionProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <span className="block text-blue-600 dark:text-blue-400">
+              <span className="block text-2xl text-blue-600 dark:text-blue-400">
                 HEY, I'M
               </span>
               <span>
@@ -150,7 +150,7 @@ function HeroSection({ image, aboutMe }: HeroSectionProps) {
 
             {/* Description */}
             <motion.p
-              className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-8 max-w-2xl"
+              className="text-md  text-slate-600 dark:text-slate-400 leading-relaxed mb-10 md:mb-12 max-w-2xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.8 }}
